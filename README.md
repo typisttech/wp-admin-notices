@@ -6,7 +6,7 @@
 [![codecov](https://codecov.io/gh/TypistTech/wp-admin-notices/branch/master/graph/badge.svg)](https://codecov.io/gh/TypistTech/wp-admin-notices)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/TypistTech/wp-admin-notices/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/TypistTech/wp-admin-notices/?branch=master)
 [![PHP Versions Tested](http://php-eye.com/badge/typisttech/wp-admin-notices/tested.svg)](https://travis-ci.org/TypistTech/wp-admin-notices)
-[![StyleCI](https://styleci.io/repos/81945222/shield?branch=master)](https://styleci.io/repos/81945222)
+[![StyleCI](https://styleci.io/repos/105561450/shield?branch=master)](https://styleci.io/repos/105561450)
 [![Dependency Status](https://gemnasium.com/badges/github.com/TypistTech/wp-admin-notices.svg)](https://gemnasium.com/github.com/TypistTech/wp-admin-notices)
 [![License](https://poser.pugx.org/typisttech/wp-admin-notices/license)](https://packagist.org/packages/typisttech/wp-admin-notices)
 [![Donate via PayPal](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://www.typist.tech/donate/wp-admin-notices/)
@@ -64,7 +64,7 @@ Coming soon... Use the source...
 
 ## Frequently Asked Questions
 
-### Do you have a demo plugin that use this package? 
+### Do you have a demo plugin that use this package?
 
 You can install this demo plugin by
 ```bash
@@ -75,7 +75,7 @@ Check out [`class-plugin.php`](/class-plugin.php). We use it for acceptance test
 
 ### Do you have real life examples that use this package?
 
-Here you go: 
+Here you go:
 
  * [Sunny](https://github.com/Typisttech/sunny)
  * [WP Cloudflare Guard](https://github.com/TypistTech/wp-cloudflare-guard)
@@ -86,12 +86,12 @@ Here you go:
 
 ### Donate via PayPal [![Donate via PayPal](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://www.typist.tech/donate/wp-admin-notices/)
 
-Love WP Admin Notices? Help me maintain WP Admin Notices, a [donation here](https://www.typist.tech/donate/wp-admin-notices/) can help with it. 
+Love WP Admin Notices? Help me maintain WP Admin Notices, a [donation here](https://www.typist.tech/donate/wp-admin-notices/) can help with it.
 
 ### Why don't you hire me?
-Ready to take freelance WordPress jobs. Contact me via the contact form [here](https://www.typist.tech/contact/) or, via email info@typist.tech 
+Ready to take freelance WordPress jobs. Contact me via the contact form [here](https://www.typist.tech/contact/) or, via email info@typist.tech
 
-### Want to help in other way? Want to be a sponsor? 
+### Want to help in other way? Want to be a sponsor?
 Contact: [Tang Rufus](mailto:tangrufus@gmail.com)
 
 ## Developing
