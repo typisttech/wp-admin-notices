@@ -71,7 +71,7 @@ You can install this demo plugin by
 $ wp plugin install https://github.com/TypistTech/wp-admin-notices/archive/nightly.zip --activate
 ```
 
-Check out [`class-plugin.php`](/class-plugin.php). We use it for acceptance tests.
+Check out [`wp-admin-notices.php`](./wp-admin-notices.php). We use it for acceptance tests.
 
 ### Do you have real life examples that use this package?
 
@@ -108,7 +108,7 @@ $ composer install
 
 [WP Admin Notices](https://github.com/TypistTech/wp-admin-notices) run tests on [Codeception](http://codeception.com/) and relies [wp-browser](https://github.com/lucatume/wp-browser) to provide WordPress integration.
 Before testing, you have to install WordPress locally and add a [codeception.yml](http://codeception.com/docs/reference/Configuration) file.
-See [codeception.example.yml](codeception.example.yml) for a [Local by Flywheel](https://share.getf.ly/v20q1y) configuration example.
+See [*.suite.example.yml](./tests/) for [Local by Flywheel](https://share.getf.ly/v20q1y) configuration examples.
 
 Actually run the tests:
 

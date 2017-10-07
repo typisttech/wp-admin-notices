@@ -44,9 +44,15 @@
         <exclude name="PEAR.Functions.FunctionCallSignature.SpaceAfterOpenBracket"/>
         <exclude name="PEAR.Functions.FunctionCallSignature.SpaceBeforeCloseBracket"/>
 
+        <exclude name="Squiz.Commenting.ClassComment.Missing"/>
         <exclude name="Squiz.Commenting.FunctionComment.IncorrectTypeHint"/>
+
         <exclude name="Squiz.Functions.FunctionDeclarationArgumentSpacing.SpacingAfterOpen"/>
         <exclude name="Squiz.Functions.FunctionDeclarationArgumentSpacing.SpacingAfterOpenHint"/>
+
+        <exclude name="WordPress.Arrays.ArrayDeclarationSpacing.NoSpaceAfterArrayOpener"/>
+        <exclude name="WordPress.Arrays.ArrayDeclarationSpacing.NoSpaceBeforeArrayCloser"/>
+        <exclude name="WordPress.Arrays.ArrayKeySpacingRestrictions.NoSpacesAroundArrayKeys"/>
 
         <exclude name="WordPress.Files.FileName.NotHyphenatedLowercase"/>
 
@@ -112,6 +118,10 @@
         <exclude-pattern>/tests/*</exclude-pattern>
     </rule>
 
+    <rule ref="PSR1.Methods.CamelCapsMethodName.NotCamelCaps">
+        <exclude-pattern>/tests/*</exclude-pattern>
+    </rule>
+
     <rule ref="PSR2.Methods.MethodDeclaration.Underscore">
         <exclude-pattern>/tests/*</exclude-pattern>
     </rule>
@@ -135,5 +145,4 @@
     <rule ref="WordPress.VIP.ValidatedSanitizedInput">
         <exclude-pattern>/tests/*</exclude-pattern>
     </rule>
-
 </ruleset>

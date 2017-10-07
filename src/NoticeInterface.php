@@ -18,11 +18,21 @@ declare(strict_types=1);
 
 namespace TypistTech\WPAdminNotices;
 
-/**
- * Class Plugin
- *
- * This class demonstrate WP Admin Notices usages.
- */
-class Plugin
+interface NoticeInterface
 {
+    /**
+     * Echo notice to screen.
+     *
+     * @param string $action AJAX request's 'action' property for sticky notices.
+     *
+     * @return void
+     */
+    public function render(string $action);
+
+    /**
+     * Handle getter.
+     *
+     * @return string
+     */
+    public function getHandle(): string;
 }

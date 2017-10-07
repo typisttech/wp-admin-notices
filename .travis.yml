@@ -58,23 +58,14 @@ before_install:
   # Install helper scripts
   - travis_retry composer global require --prefer-dist --no-suggest typisttech/travis-nginx-wordpress
   - export PATH=$HOME/.composer/vendor/bin:$PATH
-  - tnw-install-nginx
   - tnw-install-wordpress
-  - tnw-prepare-codeception
-
-  # Build the production plugin
-  - travis_retry composer build
-  # Activate the plugin
-  - wp plugin install ./release/wp-admin-notices.zip --force --activate --path=/tmp/wordpress
-  # Export a dump of plugin-activated database to the _data folder
-  - wp db export $TRAVIS_BUILD_DIR/tests/_data/dump.sql --path=/tmp/wordpress
 
 install:
   - travis_retry composer install --prefer-dist --no-suggest
 
 script:
-  - if [[ "$WITH_COVERAGE" == "true" ]]; then vendor/bin/codecept run --coverage --coverage-xml; fi
-  - if [[ "$WITH_COVERAGE" != "true" ]]; then vendor/bin/codecept run; fi
+  - if [[ "$WITH_COVERAGE" == "true" ]]; then composer test-with-coverage; fi
+  - if [[ "$WITH_COVERAGE" != "true" ]]; then composer test; fi
 
 after_script:
   - if [[ "$WITH_COVERAGE" == "true" ]]; then travis_retry tnw-upload-coverage-to-scrutinizer; fi
