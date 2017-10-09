@@ -47,44 +47,50 @@ add_action('admin_notices', [$notifier, 'renderNotices']);
 add_action('wp_ajax_' . MY_UNIQUE_ACTION, [$notifier, 'dismissNotice']);
 add_action('admin_footer', [$notifier, 'renderScript']);
 
-add_action('admin_init', function () use ($notifier) {
-    $triggerNotice = new Notice(
-        'trigger',
-        '<p><strong>WPAdminNotices</strong>: Update a post to trigger notices.</p>'
-    );
-    $notifier->enqueue($triggerNotice);
-});
+add_action(
+    'admin_init',
+    function () use ($notifier) {
+        $triggerNotice = new Notice(
+            'trigger',
+            '<p><strong>WPAdminNotices</strong>: Update a post to trigger notices.</p>'
+        );
+        $notifier->enqueue($triggerNotice);
+    }
+);
 
-add_action('post_updated', function ($post_id) use ($notifier) {
-    $notices = [];
+add_action(
+    'post_updated',
+    function ($post_id) use ($notifier) {
+        $notices = [];
 
-    $notices[] = new Notice(
-        'notice-1',
-        "<p><strong>WPAdminNotices</strong>: Post ID: $post_id has been updated.</p>",
-        'success'
-    );
-    $notices[] = new Notice(
-        'notice-2',
-        '<p><strong>WPAdminNotices</strong>: Notices will self-destruct after showing up once.</p>',
-        'warning'
-    );
-    $notices[] = new StickyNotice(
-        'notice-3',
-        '<p><strong>WPAdminNotices</strong>: StickyNotice persists in database until user clicks to dismiss it.</p>'
-    );
-    $notices[] = new StickyNotice(
-        'notice-4',
-        '<p><strong>WPAdminNotices</strong>: You can set notice type to change its color.</p>',
-        'error'
-    );
-    $notices[] = new StickyNotice(
-        'notice-5',
-        '<p><strong>WPAdminNotices</strong>: <code>HTML</code> code is allowed.</p>'
-    );
-    $notices[] = new StickyNotice(
-        'notice-6',
-        '<p><strong>WPAdminNotices</strong>: I am a link to <a href="https://cnhv.co/47ka">www.typist.tech</a></p>'
-    );
+        $notices[] = new Notice(
+            'notice-1',
+            "<p><strong>WPAdminNotices</strong>: Post ID: $post_id has been updated.</p>",
+            'success'
+        );
+        $notices[] = new Notice(
+            'notice-2',
+            '<p><strong>WPAdminNotices</strong>: Notices will self-destruct after showing up once.</p>',
+            'warning'
+        );
+        $notices[] = new StickyNotice(
+            'notice-3',
+            '<p><strong>WPAdminNotices</strong>: StickyNotice persists in database until user clicks to dismiss it.</p>'
+        );
+        $notices[] = new StickyNotice(
+            'notice-4',
+            '<p><strong>WPAdminNotices</strong>: You can set notice type to change its color.</p>',
+            'error'
+        );
+        $notices[] = new StickyNotice(
+            'notice-5',
+            '<p><strong>WPAdminNotices</strong>: <code>HTML</code> code is allowed.</p>'
+        );
+        $notices[] = new StickyNotice(
+            'notice-6',
+            '<p><strong>WPAdminNotices</strong>: I am a link to <a href="https://cnhv.co/47ka">www.typist.tech</a></p>'
+        );
 
-    $notifier->enqueue(...$notices);
-});
+        $notifier->enqueue(...$notices);
+    }
+);
