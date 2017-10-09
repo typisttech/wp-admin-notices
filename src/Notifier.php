@@ -28,34 +28,22 @@ class Notifier
     private $action;
 
     /**
-     * Key in options table that holds all enqueued notices.
+     * Connector to notice storage.
      *
-     * @var string
+     * @var StoreInterface
      */
-    private $optionKey;
+    private $store;
 
     /**
      * Notifier constructor.
      *
-     * @param string $optionKey Key in options table that holds all enqueued notices.
-     * @param string $action    AJAX request's 'action' property for sticky notices.
+     * @param string         $action AJAX request's 'action' property for sticky notices.
+     * @param StoreInterface $store  Connector to notice storage.
      */
-    public function __construct(string $optionKey, string $action)
+    public function __construct(string $action, StoreInterface $store)
     {
-        $this->optionKey = $optionKey;
         $this->action = $action;
-    }
-
-    /**
-     * Enqueue an admin notice to database.
-     *
-     * @param NoticeInterface[] ...$notices Notices to be enqueued.
-     *
-     * @return void
-     */
-    public function enqueue(NoticeInterface ...$notices)
-    {
-        Store::add($this->optionKey, ...$notices);
+        $this->store = $store;
     }
 
     /**
@@ -65,13 +53,12 @@ class Notifier
      */
     public function renderNotices()
     {
-        foreach (Store::all($this->optionKey) as $handle => $notice) {
+        foreach ($this->store->all() as $handle => $notice) {
             $notice->render($this->action);
         }
 
-        Store::reset(
-            $this->optionKey,
-            ...array_values(Store::sticky($this->optionKey))
+        $this->store->reset(
+            ...array_values($this->store->sticky())
         );
     }
 
@@ -82,7 +69,7 @@ class Notifier
      */
     public function renderScript()
     {
-        if (Store::size($this->optionKey) < 1) {
+        if ($this->store->size() < 1) {
             return;
         }
 
@@ -124,7 +111,7 @@ EOT;
             $handle = sanitize_key($_POST['handle']); // Input var okay.
         }
 
-        Store::delete($this->optionKey, $handle);
+        $this->store->delete($handle);
 
         wp_send_json_success(null, 204);
     }
