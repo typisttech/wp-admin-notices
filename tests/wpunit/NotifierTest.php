@@ -17,50 +17,17 @@ class NotifierTest extends WPTestCase
      */
     private $notifier;
 
+    /**
+     * @var Store
+     */
+    private $store;
+
     public function setUp()
     {
         parent::setUp();
         delete_option('my_option_key');
-        $this->notifier = new Notifier('my_option_key', 'my_ajax_action');
-    }
-
-    /** @test */
-    public function it_enqueue_notices_into_fresh_database()
-    {
-        $notice = new Notice('my-handle-1', 'My content.');
-
-        $this->notifier->enqueue($notice);
-
-        $this->assertEquals(
-            [
-                'my-handle-1' => $notice,
-            ],
-            get_option('my_option_key')
-        );
-    }
-
-    /** @test */
-    public function it_enqueue_notices_into_existing_database()
-    {
-        $notice1 = new Notice('my-handle-1', 'My content.');
-        $notice2 = new Notice('my-handle-2', 'My content.');
-        $notice3 = new Notice('my-handle-3', 'My content.');
-        $notice4 = new Notice('my-handle-4', 'My content.');
-
-        delete_option('my_option_key');
-        $this->notifier->enqueue($notice1);
-        $this->notifier->enqueue($notice2);
-        $this->notifier->enqueue($notice3, $notice4);
-
-        $this->assertEquals(
-            [
-                'my-handle-1' => $notice1,
-                'my-handle-2' => $notice2,
-                'my-handle-3' => $notice3,
-                'my-handle-4' => $notice4,
-            ],
-            get_option('my_option_key')
-        );
+        $this->store = new Store('my_option_key');
+        $this->notifier = new Notifier('my_ajax_action', $this->store);
     }
 
     /** @test */
@@ -68,14 +35,9 @@ class NotifierTest extends WPTestCase
     {
         $notice1 = Test::double(Notice::class);
         $notice2 = Test::double(StickyNotice::class);
-        Test::double(
-            Store::class,
-            [
-                'all' => [
-                    $notice1->construct('my-handle-1', 'My content.'),
-                    $notice2->construct('my-handle-2', 'My content.'),
-                ],
-            ]
+        $this->store->add(
+            $notice1->construct('my-handle-1', 'My content.'),
+            $notice2->construct('my-handle-2', 'My content.')
         );
 
         $this->notifier->renderNotices();
@@ -89,7 +51,7 @@ class NotifierTest extends WPTestCase
     {
         $notice = new Notice('one-off', 'My content.');
         $stickyNotice = new StickyNotice('sticky', 'My content.');
-        $this->notifier->enqueue($notice, $stickyNotice);
+        $this->store->add($notice, $stickyNotice);
 
         $this->notifier->renderNotices();
 
@@ -97,7 +59,7 @@ class NotifierTest extends WPTestCase
             [
                 'sticky' => $stickyNotice,
             ],
-            get_option('my_option_key')
+            $this->store->all()
         );
     }
 
@@ -118,7 +80,9 @@ class NotifierTest extends WPTestCase
 </script>
 EOT;
 
-        $this->notifier->enqueue(new Notice('my-handle', 'My content.'));
+        $this->store->add(
+            new Notice('my-handle', 'My content.')
+        );
         Test::func(__NAMESPACE__, 'wp_create_nonce', 'abcde123456');
 
         ob_start();

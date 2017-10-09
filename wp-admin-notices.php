@@ -41,7 +41,8 @@ require_once __DIR__ . '/vendor/autoload.php';
 const MY_UNIQUE_OPTION_KEY = 'my_demo_option';
 const MY_UNIQUE_ACTION = 'my_demo_action';
 
-$notifier = new Notifier(MY_UNIQUE_OPTION_KEY, MY_UNIQUE_ACTION);
+$store = new Store(MY_UNIQUE_OPTION_KEY);
+$notifier = new Notifier(MY_UNIQUE_ACTION, $store);
 
 add_action('admin_notices', [$notifier, 'renderNotices']);
 add_action('wp_ajax_' . MY_UNIQUE_ACTION, [$notifier, 'dismissNotice']);
@@ -49,18 +50,18 @@ add_action('admin_footer', [$notifier, 'renderScript']);
 
 add_action(
     'admin_init',
-    function () use ($notifier) {
+    function () use ($store) {
         $triggerNotice = new Notice(
             'trigger',
             '<p><strong>WPAdminNotices</strong>: Update a post to trigger notices.</p>'
         );
-        $notifier->enqueue($triggerNotice);
+        $store->add($triggerNotice);
     }
 );
 
 add_action(
     'post_updated',
-    function ($post_id) use ($notifier) {
+    function ($post_id) use ($store) {
         $notices = [];
 
         $notices[] = new Notice(
@@ -91,6 +92,6 @@ add_action(
             '<p><strong>WPAdminNotices</strong>: I am a link to <a href="https://cnhv.co/47ka">www.typist.tech</a></p>'
         );
 
-        $notifier->enqueue(...$notices);
+        $store->add(...$notices);
     }
 );

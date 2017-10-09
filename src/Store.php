@@ -19,43 +19,46 @@ declare(strict_types=1);
 namespace TypistTech\WPAdminNotices;
 
 /**
- * You should never depend on any methods in this class.
- *
- * @internal
+ * Connector to notice storage, using wp_option table.
  */
-class Store
+class Store implements StoreInterface
 {
+    /**
+     * Key in options table that holds all enqueued notices.
+     *
+     * @var string
+     */
+    private $optionKey;
+
+    /**
+     * Store constructor.
+     *
+     * @param string $optionKey Key in options table that holds all enqueued notices.
+     */
+    public function __construct($optionKey)
+    {
+        $this->optionKey = $optionKey;
+    }
+
     /**
      * Count all enqueued notices from database.
      *
-     * You should never depend on any methods in this class.
-     *
-     * @internal
-     *
-     * @param string $optionKey Key in options table that holds all enqueued notices.
-     *
      * @return int
      */
-    public static function size(string $optionKey): int
+    public function size(): int
     {
-        return count(self::all($optionKey));
+        return count($this->all());
     }
 
     /**
      * Get all enqueued notices from database.
      *
-     * You should never depend on any methods in this class.
-     *
-     * @internal
-     *
-     * @param string $optionKey Key in options table that holds all enqueued notices.
-     *
      * @return NoticeInterface[]
      */
-    public static function all(string $optionKey): array
+    public function all(): array
     {
-        return self::normalize(
-            (array) get_option($optionKey, [])
+        return $this->normalize(
+            (array) get_option($this->optionKey, [])
         );
     }
 
@@ -68,7 +71,7 @@ class Store
      *
      * @return NoticeInterface[]
      */
-    private static function normalize(array $maybeNotices): array
+    private function normalize(array $maybeNotices): array
     {
         return array_reduce(
             $maybeNotices,
@@ -86,18 +89,12 @@ class Store
     /**
      * Get sticky notices from database.
      *
-     * You should never depend on any methods in this class.
-     *
-     * @internal
-     *
-     * @param string $optionKey Key in options table that holds all enqueued notices.
-     *
      * @return NoticeInterface[]
      */
-    public static function sticky(string $optionKey): array
+    public function sticky(): array
     {
         return array_filter(
-            self::all($optionKey),
+            $this->all(),
             function (NoticeInterface $notice) {
                 return $notice instanceof StickyNotice;
             }
@@ -107,22 +104,17 @@ class Store
     /**
      * Enqueue an admin notice to database.
      *
-     * You should never depend on any methods in this class.
-     *
-     * @internal
-     *
-     * @param string            $optionKey  Key in options table that holds all enqueued notices.
      * @param NoticeInterface[] ...$notices Notices to be enqueued.
      *
      * @return void
      */
-    public static function add(string $optionKey, NoticeInterface ...$notices)
+    public function add(NoticeInterface ...$notices)
     {
         update_option(
-            $optionKey,
+            $this->optionKey,
             array_merge(
-                self::all($optionKey),
-                self::normalize($notices)
+                $this->all(),
+                $this->normalize($notices)
             )
         );
     }
@@ -130,45 +122,35 @@ class Store
     /**
      * Delete an enqueued notice from database.
      *
-     * You should never depend on any methods in this class.
-     *
-     * @internal
-     *
-     * @param string $optionKey Key in options table that holds all enqueued notices.
-     * @param string $handle    Handle of the notice to be deleted.
+     * @param string $handle Handle of the notice to be deleted.
      *
      * @return void
      */
-    public static function delete(string $optionKey, string $handle)
+    public function delete(string $handle)
     {
-        $notices = self::all($optionKey);
+        $notices = $this->all();
 
         if (array_key_exists($handle, $notices)) {
             unset($notices[$handle]);
-            self::reset($optionKey, ...array_values($notices));
+            $this->reset(...array_values($notices));
         }
     }
 
     /**
      * Reset enqueued notices in database.
      *
-     * You should never depend on any methods in this class.
-     *
-     * @internal
-     *
-     * @param string            $optionKey  Key in options table that holds all enqueued notices.
      * @param NoticeInterface[] ...$notices New notice states.
      *
      * @return void
      */
-    public static function reset(string $optionKey, NoticeInterface ...$notices)
+    public function reset(NoticeInterface ...$notices)
     {
-        $normalizedNotices = self::normalize($notices);
+        $normalizedNotices = $this->normalize($notices);
 
         if (empty($normalizedNotices)) {
-            delete_option($optionKey);
+            delete_option($this->optionKey);
         } else {
-            update_option($optionKey, $normalizedNotices);
+            update_option($this->optionKey, $normalizedNotices);
         }
     }
 }
