@@ -1,8 +1,17 @@
 # Change Log
 
-## [0.1.0](https://github.com/TypistTech/wp-admin-notices/tree/0.1.0) (2017-10-09)
+## [0.2.0](https://github.com/TypistTech/wp-admin-notices/tree/0.2.0) (2017-10-10)
+[Full Changelog](https://github.com/TypistTech/wp-admin-notices/compare/0.1.0...0.2.0)
+
 **Merged pull requests:**
 
+- Turn `Store` into an instance [\#4](https://github.com/TypistTech/wp-admin-notices/pull/4) ([TangRufus](https://github.com/TangRufus))
+- TravisCI: Remove GitHub releases uploading deployment [\#3](https://github.com/TypistTech/wp-admin-notices/pull/3) ([TangRufus](https://github.com/TangRufus))
+
+## [0.1.0](https://github.com/TypistTech/wp-admin-notices/tree/0.1.0) (2017-10-08)
+**Merged pull requests:**
+
+- Version bump 0.1.0 [\#2](https://github.com/TypistTech/wp-admin-notices/pull/2) ([TangRufus](https://github.com/TangRufus))
 - First working version [\#1](https://github.com/TypistTech/wp-admin-notices/pull/1) ([TangRufus](https://github.com/TangRufus))
 
 
