@@ -12,16 +12,6 @@ use Codeception\TestCase\WPTestCase;
  */
 class NotifierTest extends WPTestCase
 {
-    /**
-     * @var Notifier
-     */
-    private $notifier;
-
-    /**
-     * @var Store
-     */
-    private $store;
-
     public function setUp()
     {
         parent::setUp();
