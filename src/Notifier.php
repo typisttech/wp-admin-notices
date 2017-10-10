@@ -58,7 +58,7 @@ class Notifier
         }
 
         $this->store->reset(
-            ...array_values($this->store->sticky())
+            $this->store->sticky()
         );
     }
 

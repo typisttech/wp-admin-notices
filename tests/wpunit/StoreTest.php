@@ -32,13 +32,11 @@ class StoreTest extends WPTestCase
     /** @test */
     public function it_counts_notice_size_in_database()
     {
-        $this->assertSame(0, $this->store->size());
-
         update_option(
             'my_option_key',
             [
-                'my-handle-1' => new Notice('my-handle-1', 'My content.'),
-                'my-handle-2' => new Notice('my-handle-2', 'My content.'),
+                new Notice('my-handle-1', 'My content.'),
+                new StickyNotice('my-handle-2', 'My content.'),
             ]
         );
 
@@ -46,11 +44,17 @@ class StoreTest extends WPTestCase
     }
 
     /** @test */
+    public function it_counts_zero_when_no_notices_in_database()
+    {
+        $this->assertSame(0, $this->store->size());
+    }
+
+    /** @test */
     public function it_gets_notices_from_database()
     {
         $expected = [
-            'my-handle-1' => new Notice('my-handle-1', 'My content.'),
-            'my-handle-2' => new Notice('my-handle-2', 'My content.'),
+            new Notice('my-handle-1', 'My content.'),
+            new Notice('my-handle-2', 'My content.'),
         ];
         update_option('my_option_key', $expected);
 
@@ -69,17 +73,17 @@ class StoreTest extends WPTestCase
     public function it_gets_sticky_notices_from_database()
     {
         $notices = [
-            'my-handle-1' => new Notice('my-handle-1', 'My content.'),
-            'my-handle-2' => new Notice('my-handle-2', 'My content.'),
-            'my-handle-3' => new StickyNotice('my-handle-3', 'My content.'),
-            'my-handle-4' => new StickyNotice('my-handle-4', 'My content.'),
+            new Notice('my-handle-1', 'My content.'),
+            new Notice('my-handle-2', 'My content.'),
+            new StickyNotice('my-handle-3', 'My content.'),
+            new StickyNotice('my-handle-4', 'My content.'),
         ];
         update_option('my_option_key', $notices);
 
         $this->assertEquals(
             [
-                'my-handle-3' => new StickyNotice('my-handle-3', 'My content.'),
-                'my-handle-4' => new StickyNotice('my-handle-4', 'My content.'),
+                new StickyNotice('my-handle-3', 'My content.'),
+                new StickyNotice('my-handle-4', 'My content.'),
             ],
             $this->store->sticky()
         );
@@ -104,7 +108,7 @@ class StoreTest extends WPTestCase
 
         $this->assertEquals(
             [
-                'my-handle-1' => $notice,
+                $notice,
             ],
             get_option('my_option_key')
         );
@@ -124,10 +128,32 @@ class StoreTest extends WPTestCase
 
         $this->assertEquals(
             [
-                'my-handle-1' => $notice1,
-                'my-handle-2' => $notice2,
-                'my-handle-3' => $notice3,
-                'my-handle-4' => $notice4,
+                $notice1,
+                $notice2,
+                $notice3,
+                $notice4,
+            ],
+            get_option('my_option_key')
+        );
+    }
+
+    /** @test */
+    public function it_updates_notice_by_handle()
+    {
+        $notice1 = new Notice('my-handle-1', 'My content.');
+        $notice2 = new Notice('my-handle-2', 'My content.');
+        $notice3 = new Notice('my-handle-3', 'My content.');
+
+        $newNotice2 = new Notice('my-handle-2', 'My new content.');
+
+        $this->store->add($notice1, $notice2, $notice3);
+        $this->store->add($newNotice2);
+
+        $this->assertEquals(
+            [
+                $notice1,
+                $notice3,
+                $newNotice2,
             ],
             get_option('my_option_key')
         );
@@ -137,8 +163,8 @@ class StoreTest extends WPTestCase
     public function it_deletes_notice_from_database()
     {
         $notices = [
-            'my-handle-1' => new Notice('my-handle-1', 'My content.'),
-            'my-handle-2' => new StickyNotice('my-handle-2', 'My content.'),
+            new Notice('my-handle-1', 'My content.'),
+            new StickyNotice('my-handle-2', 'My content.'),
         ];
         update_option('my_option_key', $notices);
 
@@ -146,7 +172,7 @@ class StoreTest extends WPTestCase
 
         $this->assertEquals(
             [
-                'my-handle-2' => new StickyNotice('my-handle-2', 'My content.'),
+                new StickyNotice('my-handle-2', 'My content.'),
             ],
             get_option('my_option_key')
         );
@@ -156,8 +182,8 @@ class StoreTest extends WPTestCase
     public function it_deletes_nothing_when_given_handle_does_not_exist_in_database()
     {
         $notices = [
-            'my-handle-1' => new Notice('my-handle-1', 'My content.'),
-            'my-handle-2' => new StickyNotice('my-handle-2', 'My content.'),
+            new Notice('my-handle-1', 'My content.'),
+            new StickyNotice('my-handle-2', 'My content.'),
         ];
         update_option('my_option_key', $notices);
 
@@ -177,17 +203,17 @@ class StoreTest extends WPTestCase
         update_option(
             'my_option_key',
             [
-                'my-handle-1' => $notice1,
-                'my-handle-2' => $notice2,
+                $notice1,
+                $notice2,
             ]
         );
 
-        $this->store->reset($notice3, $notice4);
+        $this->store->reset([$notice3, $notice4]);
 
         $this->assertEquals(
             [
-                'my-handle-3' => $notice3,
-                'my-handle-4' => $notice4,
+                $notice3,
+                $notice4,
             ],
             get_option('my_option_key')
         );
@@ -199,8 +225,8 @@ class StoreTest extends WPTestCase
         update_option(
             'my_option_key',
             [
-                'my-handle-1' => new Notice('my-handle-1', 'My content.'),
-                'my-handle-2' => new StickyNotice('my-handle-2', 'My content.'),
+                new Notice('my-handle-1', 'My content.'),
+                new StickyNotice('my-handle-2', 'My content.'),
             ]
         );
 
