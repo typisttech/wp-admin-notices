@@ -19,10 +19,10 @@ class StickyNoticeTest extends WPTestCase
     }
 
     /** @test */
-    public function it_is_an_instance_of_notice()
+    public function it_is_an_instance_of_abstract_notice()
     {
         $notice = new StickyNotice('my-handle', 'My content.');
-        $this->assertInstanceOf(Notice::class, $notice);
+        $this->assertInstanceOf(AbstractNotice::class, $notice);
     }
 
     /** @test */

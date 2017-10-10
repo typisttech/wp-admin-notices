@@ -18,7 +18,7 @@ declare(strict_types=1);
 
 namespace TypistTech\WPAdminNotices;
 
-class StickyNotice extends Notice
+class StickyNotice extends AbstractNotice
 {
     /**
      * Echo notice to screen.
