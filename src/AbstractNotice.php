@@ -20,6 +20,8 @@ namespace TypistTech\WPAdminNotices;
 
 abstract class AbstractNotice implements NoticeInterface
 {
+    const IS_STICKY = false;
+
     /**
      * The notice's unique identifier. Also used to permanently dismiss a dismissible notice.
      *
@@ -74,5 +76,13 @@ abstract class AbstractNotice implements NoticeInterface
     public function getHandle(): string
     {
         return $this->handle;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function isSticky(): bool
+    {
+        return static::IS_STICKY;
     }
 }

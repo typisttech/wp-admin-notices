@@ -21,8 +21,15 @@ class NoticeTest extends WPTestCase
     /** @test */
     public function it_is_an_instance_of_abstract_notice()
     {
-        $notice = new StickyNotice('my-handle', 'My content.');
+        $notice = new Notice('my-handle', 'My content.');
         $this->assertInstanceOf(AbstractNotice::class, $notice);
+    }
+
+    /** @test */
+    public function it_is_not_sticky()
+    {
+        $notice = new Notice('my-handle', 'My content.');
+        $this->assertFalse($notice->isSticky());
     }
 
     /** @test */

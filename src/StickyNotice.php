@@ -20,6 +20,8 @@ namespace TypistTech\WPAdminNotices;
 
 class StickyNotice extends AbstractNotice
 {
+    const IS_STICKY = true;
+
     /**
      * Echo notice to screen.
      *
