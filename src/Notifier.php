@@ -104,14 +104,16 @@ EOT;
      */
     public function dismissNotice()
     {
-        check_ajax_referer($this->action, 'nonce');
-
-        $handle = null;
-        if (isset($_POST['handle'])) { // Input var okay.
-            $handle = sanitize_key($_POST['handle']); // Input var okay.
+        if (! wp_doing_ajax() || ! is_user_logged_in()) {
+            wp_die(-1, 403);
         }
 
-        $this->store->delete($handle);
+        check_ajax_referer($this->action, 'nonce');
+
+        if (isset($_POST['handle'])) { // Input var okay.
+            $handle = sanitize_key($_POST['handle']); // Input var okay.
+            $this->store->delete($handle);
+        }
 
         wp_send_json_success(null, 204);
     }

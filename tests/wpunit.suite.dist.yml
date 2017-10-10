@@ -5,6 +5,7 @@
 actor: WpunitTester
 modules:
     enabled:
+        - Asserts
         - WPLoader
         - \TypistTech\WPAdminNotices\Helper\Wpunit
     config:

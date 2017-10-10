@@ -11,11 +11,6 @@ use Codeception\TestCase\WPTestCase;
  */
 class StoreTest extends WPTestCase
 {
-    /**
-     * @var Store
-     */
-    private $store;
-
     public function setUp()
     {
         parent::setUp();
