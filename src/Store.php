@@ -93,7 +93,7 @@ class Store implements StoreInterface
             array_filter(
                 $this->all(),
                 function (NoticeInterface $notice) {
-                    return $notice instanceof StickyNotice;
+                    return $notice->isSticky();
                 }
             )
         );

@@ -35,4 +35,12 @@ interface NoticeInterface
      * @return string
      */
     public function getHandle(): string;
+
+    /**
+     * Whether this notice should be saved back to database after page view.
+     * Sticky notices only be removed after users click to dismiss(AJAX).
+     *
+     * @return bool
+     */
+    public function isSticky(): bool;
 }

@@ -26,6 +26,13 @@ class StickyNoticeTest extends WPTestCase
     }
 
     /** @test */
+    public function it_is_sticky()
+    {
+        $notice = new StickyNotice('my-handle', 'My content.');
+        $this->assertTrue($notice->isSticky());
+    }
+
+    /** @test */
     public function it_renders_html_content()
     {
         $notice = new StickyNotice('my-handle', 'My content.', 'error');

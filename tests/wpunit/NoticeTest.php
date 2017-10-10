@@ -26,6 +26,13 @@ class NoticeTest extends WPTestCase
     }
 
     /** @test */
+    public function it_is_not_sticky()
+    {
+        $notice = new Notice('my-handle', 'My content.');
+        $this->assertFalse($notice->isSticky());
+    }
+
+    /** @test */
     public function it_has_handle_getter()
     {
         $notice = new Notice('my-handle', 'My content.');
