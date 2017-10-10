@@ -64,7 +64,6 @@ class Store implements StoreInterface
 
     /**
      * Normalize notice array.
-     *  - Use notice handle as array index
      *  - Filter out non-NoticeInterface objects
      *
      * @param array $maybeNotices Array of objects to be normalized.
@@ -73,16 +72,13 @@ class Store implements StoreInterface
      */
     private function normalize(array $maybeNotices): array
     {
-        return array_reduce(
-            $maybeNotices,
-            function ($carry, $notice) {
-                if ($notice instanceof NoticeInterface) {
-                    $carry[$notice->getHandle()] = $notice;
+        return array_values(
+            array_filter(
+                $maybeNotices,
+                function ($notice) {
+                    return $notice instanceof NoticeInterface;
                 }
-
-                return $carry;
-            },
-            []
+            )
         );
     }
 
@@ -93,11 +89,13 @@ class Store implements StoreInterface
      */
     public function sticky(): array
     {
-        return array_filter(
-            $this->all(),
-            function (NoticeInterface $notice) {
-                return $notice instanceof StickyNotice;
-            }
+        return $this->normalize(
+            array_filter(
+                $this->all(),
+                function (NoticeInterface $notice) {
+                    return $notice instanceof StickyNotice;
+                }
+            )
         );
     }
 
@@ -110,11 +108,29 @@ class Store implements StoreInterface
      */
     public function add(NoticeInterface ...$notices)
     {
+        $normalizedNewNotices = $this->normalize($notices);
+
+        $newNoticeHandles = array_map(
+            function (NoticeInterface $notice) {
+                return $notice->getHandle();
+            },
+            $normalizedNewNotices
+        );
+
+        $oldNotices = array_filter(
+            $this->all(),
+            function (NoticeInterface $notice) use ($newNoticeHandles) {
+                return ! in_array($notice->getHandle(), $newNoticeHandles, true);
+            }
+        );
+
         update_option(
             $this->optionKey,
-            array_merge(
-                $this->all(),
-                $this->normalize($notices)
+            $this->normalize(
+                array_merge(
+                    $oldNotices,
+                    $normalizedNewNotices
+                )
             )
         );
     }
@@ -128,24 +144,26 @@ class Store implements StoreInterface
      */
     public function delete(string $handle)
     {
-        $notices = $this->all();
-
-        if (array_key_exists($handle, $notices)) {
-            unset($notices[$handle]);
-            $this->reset(...array_values($notices));
-        }
+        $this->reset(
+            array_filter(
+                $this->all(),
+                function (NoticeInterface $notice) use ($handle) {
+                    return $notice->getHandle() !== $handle;
+                }
+            )
+        );
     }
 
     /**
      * Reset enqueued notices in database.
      *
-     * @param NoticeInterface[] ...$notices New notice states.
+     * @param NoticeInterface[] $notices Optional. New notice states.
      *
      * @return void
      */
-    public function reset(NoticeInterface ...$notices)
+    public function reset(array $notices = null)
     {
-        $normalizedNotices = $this->normalize($notices);
+        $normalizedNotices = $this->normalize($notices ?? []);
 
         if (empty($normalizedNotices)) {
             delete_option($this->optionKey);

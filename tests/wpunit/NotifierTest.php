@@ -57,7 +57,7 @@ class NotifierTest extends WPTestCase
 
         $this->assertEquals(
             [
-                'sticky' => $stickyNotice,
+                $stickyNotice,
             ],
             $this->store->all()
         );

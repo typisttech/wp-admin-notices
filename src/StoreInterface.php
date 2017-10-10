@@ -65,9 +65,9 @@ interface StoreInterface
     /**
      * Reset enqueued notices in database.
      *
-     * @param NoticeInterface[] ...$notices New notice states.
+     * @param NoticeInterface[] $notices Optional. New notice states.
      *
      * @return void
      */
-    public function reset(NoticeInterface ...$notices);
+    public function reset(array $notices = null);
 }
