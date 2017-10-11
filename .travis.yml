@@ -2,8 +2,7 @@ language: php
 
 dist: trusty
 
-# Wait until travis bug fixes
-sudo: required
+sudo: false
 
 branches:
   only:
