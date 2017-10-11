@@ -19,6 +19,7 @@ class FactoryTest extends WPTestCase
     {
         parent::setUp();
 
+        $this->addAction = Test::func(__NAMESPACE__, 'add_action', true);
         $this->store = new Store(self::DUMMY_OPTION_KEY);
         $this->notifier = new Notifier(self::DUMMY_ACTION, $this->store);
     }
@@ -45,22 +46,18 @@ class FactoryTest extends WPTestCase
     /** @test */
     public function it_hooks_notifier_into_admin_notices()
     {
-        $addAction = Test::func(__NAMESPACE__, 'add_action', true);
-
         Factory::build(self::DUMMY_OPTION_KEY, self::DUMMY_ACTION);
 
-        $actualParams = $addAction->getCallsForMethod('add_action');
+        $actualParams = $this->addAction->getCallsForMethod('add_action');
         $this->tester->assertContains(['admin_notices', [$this->notifier, 'renderNotices']], $actualParams);
     }
 
     /** @test */
     public function it_hooks_notifier_into_wp_ajax_action()
     {
-        $addAction = Test::func(__NAMESPACE__, 'add_action', true);
-
         Factory::build(self::DUMMY_OPTION_KEY, self::DUMMY_ACTION);
 
-        $actualParams = $addAction->getCallsForMethod('add_action');
+        $actualParams = $this->addAction->getCallsForMethod('add_action');
         $this->tester->assertContains(
             ['wp_ajax_' . self::DUMMY_ACTION, [$this->notifier, 'dismissNotice']],
             $actualParams
@@ -70,11 +67,9 @@ class FactoryTest extends WPTestCase
     /** @test */
     public function it_hooks_notifier_into_admin_footer()
     {
-        $addAction = Test::func(__NAMESPACE__, 'add_action', true);
-
         Factory::build(self::DUMMY_OPTION_KEY, self::DUMMY_ACTION);
 
-        $actualParams = $addAction->getCallsForMethod('add_action');
+        $actualParams = $this->addAction->getCallsForMethod('add_action');
         $this->tester->assertContains(['admin_footer', [$this->notifier, 'renderScript']], $actualParams);
     }
 }
