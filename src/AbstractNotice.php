@@ -4,14 +4,14 @@
  *
  * A simplified OOP implementation of the WordPress admin notices.
  *
- * @package TypistTech\WPAdminNotices
+ * @package   TypistTech\WPAdminNotices
  *
- * @author Typist Tech <wp-admin-notices@typist.tech>
+ * @author    Typist Tech <wp-admin-notices@typist.tech>
  * @copyright 2017 Typist Tech
- * @license GPL-2.0+
+ * @license   GPL-2.0+
  *
- * @see https://www.typist.tech/projects/wp-admin-notices
- * @see https://github.com/TypistTech/wp-admin-notices
+ * @see       https://www.typist.tech/projects/wp-admin-notices
+ * @see       https://github.com/TypistTech/wp-admin-notices
  */
 
 declare(strict_types=1);
