@@ -61,8 +61,10 @@ class FactoryTest extends WPTestCase
         Factory::build(self::DUMMY_OPTION_KEY, self::DUMMY_ACTION);
 
         $actualParams = $addAction->getCallsForMethod('add_action');
-        $this->tester->assertContains(['wp_ajax_' . self::DUMMY_ACTION, [$this->notifier, 'dismissNotice']],
-            $actualParams);
+        $this->tester->assertContains(
+            ['wp_ajax_' . self::DUMMY_ACTION, [$this->notifier, 'dismissNotice']],
+            $actualParams
+        );
     }
 
     /** @test */
