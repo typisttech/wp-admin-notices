@@ -38,15 +38,7 @@ if (! defined('WPINC')) {
 
 require_once __DIR__ . '/vendor/autoload.php';
 
-const MY_UNIQUE_OPTION_KEY = 'my_demo_option';
-const MY_UNIQUE_ACTION = 'my_demo_action';
-
-$store = new Store(MY_UNIQUE_OPTION_KEY);
-$notifier = new Notifier(MY_UNIQUE_ACTION, $store);
-
-add_action('admin_notices', [$notifier, 'renderNotices']);
-add_action('wp_ajax_' . MY_UNIQUE_ACTION, [$notifier, 'dismissNotice']);
-add_action('admin_footer', [$notifier, 'renderScript']);
+$store = Factory::build('my_unique_demo_option', 'my_unique_demo_action');
 
 add_action(
     'admin_init',
