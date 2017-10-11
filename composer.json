@@ -36,6 +36,9 @@
         "site5/phantoman": "^2.0",
         "wp-coding-standards/wpcs": "^0.13.1"
     },
+    "suggest": {
+        "typisttech/imposter-plugin": "Wrap all composer vendor packages inside your own namespace, to prevent collisions when multiple plugins use this library"
+    },
     "autoload": {
         "psr-4": {
             "TypistTech\\WPAdminNotices\\": "src/"
