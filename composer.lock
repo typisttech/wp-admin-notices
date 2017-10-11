@@ -1435,16 +1435,16 @@
         },
         {
             "name": "justinrainbow/json-schema",
-            "version": "5.2.4",
+            "version": "5.2.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/justinrainbow/json-schema.git",
-                "reference": "7ccb0e67ea8ace0f84c40900ca3c8a234467628c"
+                "reference": "0d4fda8efdf216ade084a7f0aad5637572ce9835"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/7ccb0e67ea8ace0f84c40900ca3c8a234467628c",
-                "reference": "7ccb0e67ea8ace0f84c40900ca3c8a234467628c",
+                "url": "https://api.github.com/repos/justinrainbow/json-schema/zipball/0d4fda8efdf216ade084a7f0aad5637572ce9835",
+                "reference": "0d4fda8efdf216ade084a7f0aad5637572ce9835",
                 "shasum": ""
             },
             "require": {
@@ -1497,7 +1497,7 @@
                 "json",
                 "schema"
             ],
-            "time": "2017-10-04T20:57:36+00:00"
+            "time": "2017-10-10T13:22:37+00:00"
         },
         {
             "name": "lucatume/codeception-setup-local",
@@ -1543,16 +1543,16 @@
         },
         {
             "name": "lucatume/wp-browser",
-            "version": "1.21.19",
+            "version": "1.21.20",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lucatume/wp-browser.git",
-                "reference": "15d08cd022f3164f5c200644ee2a23827f22aaa3"
+                "reference": "74e4cf6e847cccc54cf61ce5f9c758d73554b64f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lucatume/wp-browser/zipball/15d08cd022f3164f5c200644ee2a23827f22aaa3",
-                "reference": "15d08cd022f3164f5c200644ee2a23827f22aaa3",
+                "url": "https://api.github.com/repos/lucatume/wp-browser/zipball/74e4cf6e847cccc54cf61ce5f9c758d73554b64f",
+                "reference": "74e4cf6e847cccc54cf61ce5f9c758d73554b64f",
                 "shasum": ""
             },
             "require": {
@@ -1601,7 +1601,7 @@
                 "codeception",
                 "wordpress"
             ],
-            "time": "2017-10-09T15:53:39+00:00"
+            "time": "2017-10-10T08:59:17+00:00"
         },
         {
             "name": "lucatume/wp-browser-commons",
