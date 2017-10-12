@@ -59,12 +59,12 @@ add_action(
         $notices[] = new Notice(
             'notice-1',
             "<p><strong>WPAdminNotices</strong>: Post ID: $post_id has been updated.</p>",
-            'success'
+            Notice::SUCCESS
         );
         $notices[] = new Notice(
             'notice-2',
             '<p><strong>WPAdminNotices</strong>: Notices will self-destruct after showing up once.</p>',
-            'warning'
+            Notice::WARNING
         );
         $notices[] = new StickyNotice(
             'notice-3',
@@ -73,7 +73,7 @@ add_action(
         $notices[] = new StickyNotice(
             'notice-4',
             '<p><strong>WPAdminNotices</strong>: You can set notice type to change its color.</p>',
-            'error'
+            StickyNotice::ERROR
         );
         $notices[] = new StickyNotice(
             'notice-5',
@@ -82,6 +82,14 @@ add_action(
         $notices[] = new StickyNotice(
             'notice-6',
             '<p><strong>WPAdminNotices</strong>: I am a link to <a href="https://cnhv.co/47ka">www.typist.tech</a></p>'
+        );
+
+        $notices[] = new Notice(
+            'notice-7',
+            '<strong>WPAdminNotices</strong>: <code>update-nag</code> is not suitable for regular admin notices.'
+            . ' And, it does not available as <code>StickyNotice</code>.'
+            . ' See <a href="https://cnhv.co/5497">WordPress codex</a>',
+            Notice::UPDATE_NAG
         );
 
         $store->add(...$notices);

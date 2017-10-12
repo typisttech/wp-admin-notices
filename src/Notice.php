@@ -20,6 +20,14 @@ namespace TypistTech\WPAdminNotices;
 
 class Notice extends AbstractNotice
 {
+    const HTML_CLASSES = [
+        self::UPDATE_NAG => 'update-nag',
+        self::ERROR => 'notice notice-error',
+        self::WARNING => 'notice notice-warning',
+        self::INFO => 'notice notice-info',
+        self::SUCCESS => 'notice notice-success',
+    ];
+
     /**
      * Echo notice to screen.
      *
@@ -32,7 +40,7 @@ class Notice extends AbstractNotice
         printf(
             '<div id="%1$s" class="%2$s">%3$s</div>',
             esc_attr($this->getHandle()),
-            esc_attr("notice notice-$this->type"),
+            esc_attr($this->htmlClass),
             wp_kses_post($this->content)
         );
     }

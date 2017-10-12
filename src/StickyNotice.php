@@ -22,6 +22,13 @@ class StickyNotice extends AbstractNotice
 {
     const IS_STICKY = true;
 
+    const HTML_CLASSES = [
+        self::ERROR => 'is-dismissible notice notice-error',
+        self::WARNING => 'is-dismissible notice notice-warning',
+        self::INFO => 'is-dismissible notice notice-info',
+        self::SUCCESS => 'is-dismissible notice notice-success',
+    ];
+
     /**
      * Echo notice to screen.
      *
@@ -35,7 +42,7 @@ class StickyNotice extends AbstractNotice
             '<div id="%1$s" data-handle="%1$s" data-action="%2$s" class="%3$s">%4$s</div>',
             esc_attr($this->getHandle()),
             esc_attr($action),
-            esc_attr("is-dismissible notice notice-$this->type"),
+            esc_attr($this->htmlClass),
             wp_kses_post($this->content)
         );
     }
