@@ -1,10 +1,27 @@
 # Change Log
 
-## [0.2.0](https://github.com/TypistTech/wp-admin-notices/tree/0.2.0) (2017-10-10)
+## [0.3.0](https://github.com/TypistTech/wp-admin-notices/tree/0.3.0) (2017-10-12)
+[Full Changelog](https://github.com/TypistTech/wp-admin-notices/compare/0.2.0...0.3.0)
+
+**Merged pull requests:**
+
+- Add documents [\#15](https://github.com/TypistTech/wp-admin-notices/pull/15) ([TangRufus](https://github.com/TangRufus))
+- Use constants as type argument; Add update-nag [\#14](https://github.com/TypistTech/wp-admin-notices/pull/14) ([TangRufus](https://github.com/TangRufus))
+- Fix: AspectMock ordering issue [\#13](https://github.com/TypistTech/wp-admin-notices/pull/13) ([TangRufus](https://github.com/TangRufus))
+- Composer: Suggest `typisttech/imposter-plugin` [\#12](https://github.com/TypistTech/wp-admin-notices/pull/12) ([TangRufus](https://github.com/TangRufus))
+- TravisCI: Do not use sudo [\#11](https://github.com/TypistTech/wp-admin-notices/pull/11) ([TangRufus](https://github.com/TangRufus))
+- Add `Factory` [\#10](https://github.com/TypistTech/wp-admin-notices/pull/10) ([TangRufus](https://github.com/TangRufus))
+- Notifier: Reject anonymous users before handling Ajax requests [\#9](https://github.com/TypistTech/wp-admin-notices/pull/9) ([TangRufus](https://github.com/TangRufus))
+- Check stickiness by method instead of class name [\#8](https://github.com/TypistTech/wp-admin-notices/pull/8) ([TangRufus](https://github.com/TangRufus))
+- Store: Remove handle index from option array [\#7](https://github.com/TypistTech/wp-admin-notices/pull/7) ([TangRufus](https://github.com/TangRufus))
+- Extract `AbstractNotice` [\#6](https://github.com/TypistTech/wp-admin-notices/pull/6) ([TangRufus](https://github.com/TangRufus))
+
+## [0.2.0](https://github.com/TypistTech/wp-admin-notices/tree/0.2.0) (2017-10-09)
 [Full Changelog](https://github.com/TypistTech/wp-admin-notices/compare/0.1.0...0.2.0)
 
 **Merged pull requests:**
 
+- Version bump 0.2.0 [\#5](https://github.com/TypistTech/wp-admin-notices/pull/5) ([TangRufus](https://github.com/TangRufus))
 - Turn `Store` into an instance [\#4](https://github.com/TypistTech/wp-admin-notices/pull/4) ([TangRufus](https://github.com/TangRufus))
 - TravisCI: Remove GitHub releases uploading deployment [\#3](https://github.com/TypistTech/wp-admin-notices/pull/3) ([TangRufus](https://github.com/TangRufus))
 
