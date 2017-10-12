@@ -28,14 +28,14 @@ A simplified OOP implementation of the WordPress admin notices.
     - [`__construct(string $handle, string $content, string $type = null)`](#__constructstring-handle-string-content-string-type--null-1)
   - [Store](#store)
     - [`__construct(string $optionKey)`](#__constructstring-optionkey)
-    - [`add()`](#add)
+    - [`add(NoticeInterface ...$notices)`](#addnoticeinterface-notices)
     - [`delete(string $handle)`](#deletestring-handle)
   - [Notifier](#notifier)
     - [`__construct(string $action, StoreInterface $store)`](#__constructstring-action-storeinterface-store)
   - [Factory](#factory)
     - [`build(string $optionKey, string $action): Store`](#buildstring-optionkey-string-action-store)
 - [Frequently Asked Questions](#frequently-asked-questions)
-  - [Can I implement my own notice class?](#can-i-implement-my-own-notice-class)
+  - [Can I implement my own notice classes?](#can-i-implement-my-own-notice-classes)
   - [Can I use a different storage scheme other than `wp_option` table?](#can-i-use-a-different-storage-scheme-other-than-wp_option-table)
   - [Can two different plugins use this package at the same time?](#can-two-different-plugins-use-this-package-at-the-same-time)
   - [Do you have a demo plugin that use this package?](#do-you-have-a-demo-plugin-that-use-this-package)
@@ -130,7 +130,7 @@ $notice = new Notice('example-notice', '<strong>Hello</strong> World!', Notice::
 
  * @param string      $handle  The notice's unique identifier. Also used to permanently dismiss a sticky notice.
  * @param string      $content The HTML content of the notice.
- * @param string|null $type    The notice's type. Expecting one of `StickyNotice::ERROR`, `StickyNotice::WARNING`, `StickyNotice::INFO`, StickyNotice::SUCCESS. Default is `StickyNotice::INFO`.
+ * @param string|null $type    The notice's type. Expecting one of `StickyNotice::ERROR`, `StickyNotice::WARNING`, `StickyNotice::INFO`, `StickyNotice::SUCCESS`. Default is `StickyNotice::INFO`.
 
 `UPDATE_NAG` is not available for `StickyNotice`.
 
@@ -153,11 +153,11 @@ If you want to use an alternative store, see [FAQ](#can-i-use-a-different-storag
 $store = new Store('my_unique_option_key');
 ```
 
-#### `add()`
+#### `add(NoticeInterface ...$notices)`
 
 Enqueue admin notices to database.
 
-Not limited to `Notice` and `StickyNotice` only, any instance of `NoticeInterface` is accepted. See [FAQ](#can-i-implement-my-own-notice-class).
+Not limited to `Notice` and `StickyNotice` only, any instance of `NoticeInterface` is accepted. See [FAQ](#can-i-implement-my-own-notice-classes).
 
  * @param NoticeInterface[] ...$notices Notices to be enqueued.
 
@@ -165,7 +165,7 @@ Not limited to `Notice` and `StickyNotice` only, any instance of `NoticeInterfac
 $store->add($notice1, $notice2);
 
 // To update a notice, re-add with the same handle.
-$oldNotice = new Notice('i-am-unique', 'Chaos isn't a pit.');
+$oldNotice = new Notice('i-am-unique', "Chaos isn't a pit.");
 $store->add($oldNotice);
 
 $newNotice = new Notice('i-am-unique', 'Chaos is a ladder.');
@@ -218,11 +218,11 @@ $store = Factory::build('my_unique_option_key', 'my_unique_action');
 
 ## Frequently Asked Questions
 
-### Can I implement my own notice class?
+### Can I implement my own notice classes?
 
 Of course! Just implements the `NoticeInterface`.
 
-Take a look at classes `Notice` `StickyNotice` and their tests for examples implementation of `StoreInterface`.
+Take a look at classes `Notice` and `StickyNotice` as well as their tests for example implementations of `StoreInterface`.
 
 If you'd like to create a open-source package to do this to help others, [open a new issue](https://github.com/TypistTech/wp-contained-hook/issues/new) to let us know, we'd love to help you with it.
 
