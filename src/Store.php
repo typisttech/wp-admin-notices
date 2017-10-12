@@ -35,7 +35,7 @@ class Store implements StoreInterface
      *
      * @param string $optionKey Key in options table that holds all enqueued notices.
      */
-    public function __construct($optionKey)
+    public function __construct(string $optionKey)
     {
         $this->optionKey = $optionKey;
     }
@@ -100,7 +100,7 @@ class Store implements StoreInterface
     }
 
     /**
-     * Enqueue an admin notice to database.
+     * Enqueue admin notices to database.
      *
      * @param NoticeInterface[] ...$notices Notices to be enqueued.
      *
