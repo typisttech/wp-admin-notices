@@ -18,9 +18,18 @@ declare(strict_types=1);
 
 namespace TypistTech\WPAdminNotices;
 
+use InvalidArgumentException;
+
 abstract class AbstractNotice implements NoticeInterface
 {
     const IS_STICKY = false;
+    const HTML_CLASSES = [];
+
+    const UPDATE_NAG = 'UPDATE_NAG';
+    const ERROR = 'ERROR';
+    const WARNING = 'WARNING';
+    const INFO = 'INFO';
+    const SUCCESS = 'SUCCESS';
 
     /**
      * The notice's unique identifier. Also used to permanently dismiss a dismissible notice.
@@ -37,11 +46,11 @@ abstract class AbstractNotice implements NoticeInterface
     protected $content;
 
     /**
-     * The notice's type. Expecting one of error, warning, info, success.
+     * HTML class for the notice.
      *
      * @var string
      */
-    protected $type;
+    protected $htmlClass;
 
     /**
      * Notice constructor.
@@ -49,16 +58,30 @@ abstract class AbstractNotice implements NoticeInterface
      * @param string      $handle  The notice's unique identifier. Also used to permanently dismiss a dismissible
      *                             notice.
      * @param string      $content The HTML content of the notice.
-     * @param string|null $type    The notice's type. Expecting one of error, warning, info, success.
+     * @param string|null $type    The notice's type. Expecting one of UPDATE_NAG, ERROR, WARNING, INFO, SUCCESS.
+     *                             Default is INFO.
+     *
+     * @throws InvalidArgumentException When $type is not supported.
      */
     public function __construct(
         string $handle,
         string $content,
         string $type = null
     ) {
+        $type = $type ?? static::INFO;
+        if (! array_key_exists($type, static::HTML_CLASSES)) {
+            $errorMessage = sprintf(
+                'Type "%1$s" not found. Valid options are: %2$s.',
+                $type,
+                implode(', ', array_keys(static::HTML_CLASSES))
+            );
+
+            throw new InvalidArgumentException($errorMessage);
+        }
+
         $this->handle = sanitize_key($handle);
         $this->content = wp_kses_post($content);
-        $this->type = sanitize_html_class($type ?? 'info');
+        $this->htmlClass = static::HTML_CLASSES[$type];
     }
 
     /**

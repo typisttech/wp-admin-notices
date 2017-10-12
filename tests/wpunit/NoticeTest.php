@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace TypistTech\WPAdminNotices;
 
 use Codeception\TestCase\WPTestCase;
+use InvalidArgumentException;
 
 /**
  * @covers \TypistTech\WPAdminNotices\Notice
@@ -49,7 +50,7 @@ class NoticeTest extends WPTestCase
     /** @test */
     public function it_renders_html_content()
     {
-        $notice = new Notice('my-handle', 'My content.', 'error');
+        $notice = new Notice('my-handle', 'My content.', Notice::ERROR);
         $expected = '<div id="my-handle" class="notice notice-error">My content.</div>';
 
         ob_start();
@@ -57,5 +58,19 @@ class NoticeTest extends WPTestCase
         $actual = ob_get_clean();
 
         $this->assertSame($expected, $actual);
+    }
+
+    /** @test */
+    public function it_throws_invalid_argument_exception_when_type_is_not_supported()
+    {
+        $expectedErrorMessage = 'Type "something-else" not found. '
+                                . 'Valid options are: UPDATE_NAG, ERROR, WARNING, INFO, SUCCESS.';
+
+        $this->tester->expectException(
+            new InvalidArgumentException($expectedErrorMessage),
+            function () {
+                new Notice('my-handle', 'My content.', 'something-else');
+            }
+        );
     }
 }
