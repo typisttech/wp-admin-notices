@@ -24,28 +24,28 @@ namespace TypistTech\WPAdminNotices;
 interface StoreInterface
 {
     /**
-     * Count all enqueued notices from database.
+     * Count all enqueued notices.
      *
      * @return int
      */
     public function size(): int;
 
     /**
-     * Get all enqueued notices from database.
+     * Get all enqueued notices.
      *
      * @return NoticeInterface[]
      */
     public function all(): array;
 
     /**
-     * Get sticky notices from database.
+     * Get sticky notices.
      *
      * @return NoticeInterface[]
      */
     public function sticky(): array;
 
     /**
-     * Enqueue an admin notice to database.
+     * Enqueue an admin notice.
      *
      * @param NoticeInterface[] ...$notices Notices to be enqueued.
      *
@@ -54,7 +54,7 @@ interface StoreInterface
     public function add(NoticeInterface ...$notices);
 
     /**
-     * Delete an enqueued notice from database.
+     * Delete an enqueued notice.
      *
      * @param string $handle Handle of the notice to be deleted.
      *
@@ -63,7 +63,7 @@ interface StoreInterface
     public function delete(string $handle);
 
     /**
-     * Reset enqueued notices in database.
+     * Reset enqueued notices.
      *
      * @param NoticeInterface[] $notices Optional. New notice states.
      *

@@ -32,7 +32,7 @@ abstract class AbstractNotice implements NoticeInterface
     const SUCCESS = 'SUCCESS';
 
     /**
-     * The notice's unique identifier. Also used to permanently dismiss a dismissible notice.
+     * The notice's unique identifier. Also used to permanently dismiss a sticky notice.
      *
      * @var string
      */
@@ -55,7 +55,7 @@ abstract class AbstractNotice implements NoticeInterface
     /**
      * Notice constructor.
      *
-     * @param string      $handle  The notice's unique identifier. Also used to permanently dismiss a dismissible
+     * @param string      $handle  The notice's unique identifier. Also used to permanently dismiss a sticky
      *                             notice.
      * @param string      $content The HTML content of the notice.
      * @param string|null $type    The notice's type. Expecting one of UPDATE_NAG, ERROR, WARNING, INFO, SUCCESS.
