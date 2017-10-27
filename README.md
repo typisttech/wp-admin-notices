@@ -37,11 +37,15 @@ A simplified OOP implementation of the WordPress admin notices.
 - [Frequently Asked Questions](#frequently-asked-questions)
   - [Can I implement my own notice classes?](#can-i-implement-my-own-notice-classes)
   - [Can I use a different storage scheme other than `wp_option` table?](#can-i-use-a-different-storage-scheme-other-than-wp_option-table)
+  - [Is this a plugin?](#is-this-a-plugin)
+  - [What to do when wp.org plugin team tell me to clean up the `vendor` folder?](#what-to-do-when-wporg-plugin-team-tell-me-to-clean-up-the-vendor-folder)
   - [Can two different plugins use this package at the same time?](#can-two-different-plugins-use-this-package-at-the-same-time)
   - [Do you have a demo plugin that use this package?](#do-you-have-a-demo-plugin-that-use-this-package)
   - [Do you have real life examples that use this package?](#do-you-have-real-life-examples-that-use-this-package)
 - [Support!](#support)
   - [Donate via PayPal *](#donate-via-paypal-)
+  - [Donate Monero](#donate-monero)
+  - [Mine me some Monero](#mine-me-some-monero)
   - [Why don't you hire me?](#why-dont-you-hire-me)
   - [Want to help in other way? Want to be a sponsor?](#want-to-help-in-other-way-want-to-be-a-sponsor)
 - [Developing](#developing)
@@ -253,6 +257,18 @@ Take a look at the `Store` class and `StoreTest` for an example implementation o
 
 If you'd like to create a open-source package to do this to help others, [open a new issue](https://github.com/TypistTech/wp-contained-hook/issues/new) to let us know, we'd love to help you with it.
 
+### Is this a plugin?
+
+No, this is a package that should be part of your plugin.
+
+### What to do when wp.org plugin team tell me to clean up the `vendor` folder?
+
+Re-install packages via the following command. This package exports only necessary files to `dist`.
+
+```bash
+$ composer install --no-dev --prefer-dist --optimize-autoloader
+```
+
 ### Can two different plugins use this package at the same time?
 
 Yes, if put all `WP Admin Notices` classes under your own namespace to avoid class name conflicts.
@@ -284,10 +300,31 @@ Here you go:
 
 Love WP Admin Notices? Help me maintain WP Admin Notices, a [donation here](https://www.typist.tech/donate/wp-admin-notices/) can help with it.
 
+### Donate Monero
+
+Send Monero to my public address: `43fiS7JzAK7eSHCpjTL5J1JYqPb6pvM2dGex7aoFZ5u5e5QRg6NKNnFGXqPh6C53E3M8UvqzemVt43uLgimwDpW41zXUHAp`
+
+### Mine me some Monero
+
+1. Open one of the follow web pages open on your computer
+2. Start the miner
+3. Adjust threads and CPU usages
+4. Keep it running
+
+If you have an AdBlocker:
+
+[https://authedmine.com/media/miner.html?key=I2z6pueJaeVCz5dh1uA8cru5Fl108DtH&user=wp-admin-notices&autostart=1](https://authedmine.com/media/miner.html?key=I2z6pueJaeVCz5dh1uA8cru5Fl108DtH&user=wp-admin-notices&autostart=1)
+
+else:
+
+[https://coinhive.com/media/miner.html?key=I2z6pueJaeVCz5dh1uA8cru5Fl108DtH&user=wp-admin-notices&autostart=1](https://coinhive.com/media/miner.html?key=I2z6pueJaeVCz5dh1uA8cru5Fl108DtH&user=wp-admin-notices&autostart=1)
+
 ### Why don't you hire me?
-Ready to take freelance WordPress jobs. Contact me via the contact form [here](https://www.typist.tech/contact/) or, via email info@typist.tech
+
+Ready to take freelance WordPress jobs. Contact me via the contact form [here](https://www.typist.tech/contact/) or, via email [info@typist.tech](mailto:info@typist.tech)
 
 ### Want to help in other way? Want to be a sponsor?
+
 Contact: [Tang Rufus](mailto:tangrufus@gmail.com)
 
 ## Developing

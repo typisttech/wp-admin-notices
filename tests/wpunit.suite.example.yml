@@ -3,7 +3,7 @@ modules:
         WPLoader:
             wpRootFolder: "/Users/me/Local Sites/wpadminnotices/app/public"
             dbName: "local"
-            dbHost: "wp-admin-notices.local:4006"
+            dbHost: "192.168.93.100:4006"
             dbUser: "root"
             dbPassword: "root"
             domain: "wp-admin-notices.local"
