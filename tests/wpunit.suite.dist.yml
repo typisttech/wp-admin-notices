@@ -19,8 +19,6 @@ modules:
             domain: 'wordpress.dev'
             adminEmail: 'admin@wordpress.dev'
             title: "Test"
-            plugins: ['wp-admin-notices/wp-admin-notices.php']
-            activatePlugins: ['wp-admin-notices/wp-admin-notices.php']
 coverage:
     enabled: true
     whitelist:
