@@ -10,7 +10,7 @@
  * @copyright 2017 Typist Tech
  * @license   GPL-2.0+
  *
- * @see       https://www.typist.tech/projects/wp-admin-notices
+ * @see       https://typist.tech/projects/wp-admin-notices
  * @see       https://github.com/TypistTech/wp-admin-notices
  */
 
@@ -20,7 +20,7 @@
  * Description: Example Plugin for WP Admin Notices
  * Version:     0.11.0
  * Author:      Tang Rufus
- * Author URI:  https://www.typist.tech/
+ * Author URI:  https://typist.tech/
  * Text Domain: wp-admin-notices
  * Domain Path: src/languages
  * License:     GPL-2.0+
@@ -81,7 +81,7 @@ add_action(
         );
         $notices[] = new StickyNotice(
             'notice-6',
-            '<p><strong>WPAdminNotices</strong>: I am a link to <a href="https://cnhv.co/47ka">www.typist.tech</a></p>'
+            '<p><strong>WPAdminNotices</strong>: I am a link to <a href="https://cnhv.co/47ka">typist.tech</a></p>'
         );
 
         $notices[] = new Notice(
