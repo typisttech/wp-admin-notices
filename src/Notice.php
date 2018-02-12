@@ -7,10 +7,10 @@
  * @package   TypistTech\WPAdminNotices
  *
  * @author    Typist Tech <wp-admin-notices@typist.tech>
- * @copyright 2017 Typist Tech
- * @license   GPL-2.0+
+ * @copyright 2017-2018 Typist Tech
+ * @license   GPL-2.0-or-later
  *
- * @see       https://www.typist.tech/projects/wp-admin-notices
+ * @see       https://typist.tech/projects/wp-admin-notices
  * @see       https://github.com/TypistTech/wp-admin-notices
  */
 

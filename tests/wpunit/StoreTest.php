@@ -227,6 +227,6 @@ class StoreTest extends WPTestCase
 
         $this->store->reset();
 
-        $this->assertSame(false, get_option('my_option_key'));
+        $this->assertFalse(get_option('my_option_key'));
     }
 }

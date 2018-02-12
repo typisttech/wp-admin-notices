@@ -7,10 +7,9 @@
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/TypistTech/wp-admin-notices/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/TypistTech/wp-admin-notices/?branch=master)
 [![PHP Versions Tested](http://php-eye.com/badge/typisttech/wp-admin-notices/tested.svg)](https://travis-ci.org/TypistTech/wp-admin-notices)
 [![StyleCI](https://styleci.io/repos/105561450/shield?branch=master)](https://styleci.io/repos/105561450)
-[![Dependency Status](https://gemnasium.com/badges/github.com/TypistTech/wp-admin-notices.svg)](https://gemnasium.com/github.com/TypistTech/wp-admin-notices)
 [![License](https://poser.pugx.org/typisttech/wp-admin-notices/license)](https://packagist.org/packages/typisttech/wp-admin-notices)
-[![Donate via PayPal](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://www.typist.tech/donate/wp-admin-notices/)
-[![Hire Typist Tech](https://img.shields.io/badge/Hire-Typist%20Tech-ff69b4.svg)](https://www.typist.tech/contact/)
+[![Donate via PayPal](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://typist.tech/donate/wp-admin-notices/)
+[![Hire Typist Tech](https://img.shields.io/badge/Hire-Typist%20Tech-ff69b4.svg)](https://typist.tech/contact/)
 
 A simplified OOP implementation of the WordPress admin notices.
 
@@ -42,10 +41,7 @@ A simplified OOP implementation of the WordPress admin notices.
   - [Can two different plugins use this package at the same time?](#can-two-different-plugins-use-this-package-at-the-same-time)
   - [Do you have a demo plugin that use this package?](#do-you-have-a-demo-plugin-that-use-this-package)
   - [Do you have real life examples that use this package?](#do-you-have-real-life-examples-that-use-this-package)
-- [Support!](#support)
-  - [Donate via PayPal *](#donate-via-paypal-)
-  - [Donate Monero](#donate-monero)
-  - [Mine me some Monero](#mine-me-some-monero)
+- [Support](#support)
   - [Why don't you hire me?](#why-dont-you-hire-me)
   - [Want to help in other way? Want to be a sponsor?](#want-to-help-in-other-way-want-to-be-a-sponsor)
 - [Developing](#developing)
@@ -294,34 +290,13 @@ Here you go:
 
 *Add your own plugin [here](https://github.com/TypistTech/wp-admin-notices/edit/master/README.md)*
 
-## Support!
+## Support
 
-### Donate via PayPal [![Donate via PayPal](https://img.shields.io/badge/Donate-PayPal-blue.svg)](https://www.typist.tech/donate/wp-admin-notices/)
-
-Love WP Admin Notices? Help me maintain WP Admin Notices, a [donation here](https://www.typist.tech/donate/wp-admin-notices/) can help with it.
-
-### Donate Monero
-
-Send Monero to my public address: `43fiS7JzAK7eSHCpjTL5J1JYqPb6pvM2dGex7aoFZ5u5e5QRg6NKNnFGXqPh6C53E3M8UvqzemVt43uLgimwDpW41zXUHAp`
-
-### Mine me some Monero
-
-1. Open one of the follow web pages open on your computer
-2. Start the miner
-3. Adjust threads and CPU usages
-4. Keep it running
-
-If you have an AdBlocker:
-
-[https://authedmine.com/media/miner.html?key=I2z6pueJaeVCz5dh1uA8cru5Fl108DtH&user=wp-admin-notices&autostart=1](https://authedmine.com/media/miner.html?key=I2z6pueJaeVCz5dh1uA8cru5Fl108DtH&user=wp-admin-notices&autostart=1)
-
-else:
-
-[https://coinhive.com/media/miner.html?key=I2z6pueJaeVCz5dh1uA8cru5Fl108DtH&user=wp-admin-notices&autostart=1](https://coinhive.com/media/miner.html?key=I2z6pueJaeVCz5dh1uA8cru5Fl108DtH&user=wp-admin-notices&autostart=1)
+Love `wp-admin-notices`? Help me maintain it, a [donation here](https://typist.tech/donation/) can help with it.
 
 ### Why don't you hire me?
 
-Ready to take freelance WordPress jobs. Contact me via the contact form [here](https://www.typist.tech/contact/) or, via email [info@typist.tech](mailto:info@typist.tech)
+Ready to take freelance WordPress jobs. Contact me via the contact form [here](https://typist.tech/contact/) or, via email [info@typist.tech](mailto:info@typist.tech)
 
 ### Want to help in other way? Want to be a sponsor?
 
@@ -351,7 +326,7 @@ $ composer test
 
 We also test all PHP files against [PSR-2: Coding Style Guide](http://www.php-fig.org/psr/psr-2/) and part of the [WordPress coding standard](https://github.com/WordPress-Coding-Standards/WordPress-Coding-Standards).
 
-Check the code style with ``$ composer check-style`` and fix it with ``$ composer fix-style``.
+Check the code style with ``$ composer check-style``.
 
 ## Feedback
 
@@ -373,7 +348,7 @@ Please see [CONTRIBUTING](.github/CONTRIBUTING.md) and [CODE_OF_CONDUCT](./CODE_
 
 ## Credits
 
-[WP Admin Notices](https://github.com/TypistTech/wp-admin-notices) is a [Typist Tech](https://www.typist.tech) project and maintained by [Tang Rufus](https://twitter.com/Tangrufus), freelance developer for [hire](https://www.typist.tech/contact/).
+[WP Admin Notices](https://github.com/TypistTech/wp-admin-notices) is a [Typist Tech](https://typist.tech) project and maintained by [Tang Rufus](https://twitter.com/Tangrufus), freelance developer for [hire](https://typist.tech/contact/).
 
 Full list of contributors can be found [here](https://github.com/TypistTech/wp-admin-notices/graphs/contributors).
 
