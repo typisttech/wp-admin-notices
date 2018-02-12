@@ -8,7 +8,7 @@
  *
  * @author    Typist Tech <wp-admin-notices@typist.tech>
  * @copyright 2017-2018 Typist Tech
- * @license   GPL-2.0+
+ * @license   GPL-2.0-or-later
  *
  * @see       https://typist.tech/projects/wp-admin-notices
  * @see       https://github.com/TypistTech/wp-admin-notices
@@ -23,7 +23,7 @@
  * Author URI:  https://typist.tech/
  * Text Domain: wp-admin-notices
  * Domain Path: src/languages
- * License:     GPL-2.0+
+ * License:     GPL-2.0-or-later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
  */
 
